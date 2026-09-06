@@ -18,15 +18,6 @@ const HOURS = [
 
 const MOODS = ["😌", "😊", "😐", "😤", "😔", "🔥", "✨", "🌿"];
 
-function CheckBox({ label, defaultChecked = false }: { label: string; defaultChecked?: boolean }) {
-  const [checked, setChecked] = useState(defaultChecked);
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0" }}>
-      <CheckBox id={`dp-cb-3`} onClick={() => setChecked(c => !c)} />
-      <span style={{ fontSize: 13, color: checked ? "var(--text-3)" : "var(--text)", textDecoration: checked ? "line-through" : "none", textDecorationColor: "var(--text-3)" }}>{label}</span>
-    </div>
-  );
-}
 
 function TimeBlock({ hour }: { hour: string }) {
   return (
@@ -90,8 +81,8 @@ function ProductivityLayout() {
           <div className="section-label" style={{ marginBottom: 10 }}>To-Do List</div>
           {[1, 2, 3].map(i => (
             <div key={'t'+i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0" }}>
-              <CheckBox id={`${prefix}-todo-cb-${i}`} />
-              <input id={`${prefix}-todo-in-${i}`} className="line-input" style={{ fontSize: 13 }} placeholder="Add task..." />
+              <CheckBox id={`dp-todo-cb-${i}`} />
+              <input id={`dp-todo-in-${i}`} className="line-input" style={{ fontSize: 13 }} placeholder="Add task..." />
             </div>
           ))}
           {[1, 2, 3].map(i => (

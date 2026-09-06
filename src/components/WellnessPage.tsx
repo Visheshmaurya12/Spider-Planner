@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Tracker = "mood" | "energy" | "sleep" | "water" | "selfcare" | "movement" | "gratitude";
 
@@ -16,7 +16,10 @@ const MOOD_LABELS = ["Very Low", "Low", "Okay", "Good", "Great", "Excellent", "W
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 function MoodTracker() {
-  const [week, setWeek] = useState(() => { const s = localStorage.getItem("well-week"); return s ? JSON.parse(s) : (number | null)[]>(Array(7).fill(null)); });
+  const [week, setWeek] = useState<(number | null)[]>(() => {
+  const s = localStorage.getItem("well-week");
+  return s ? JSON.parse(s) : Array(7).fill(null);
+});
   useEffect(() => localStorage.setItem("well-week", JSON.stringify(week)), [week]);
   function setDay(i: number, v: number) {
     setWeek(w => w.map((x, j) => j === i ? (x === v ? null : v) : x));

@@ -4,15 +4,6 @@ import CheckBox from "./CheckBox";
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const SHORT = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
-function CheckBox({ label }: { label: string }) {
-  const [checked, setChecked] = useState(false);
-  return (
-    <div style={{ display: "flex", gap: 8, alignItems: "center", padding: "4px 0" }}>
-      <CheckBox id={`wv-cb-2`} onClick={() => setChecked(c => !c)} />
-      <span style={{ fontSize: 12, color: checked ? "var(--text-3)" : "var(--text-2)", textDecoration: checked ? "line-through" : "none" }}>{label}</span>
-    </div>
-  );
-}
 
 type View = "plan" | "reflect";
 
@@ -129,8 +120,8 @@ export default function WeeklyView() {
               <div className="section-label" style={{ marginBottom: 10 }}>Important Tasks This Week</div>
               {[1, 2, 3].map(i => (
             <div key={'t'+i} style={{ display: "flex", gap: 8, alignItems: "center", padding: "4px 0" }}>
-              <CheckBox id={`${prefix}-todo-cb-${i}`} style={{ width: 14, height: 14 }} />
-              <input id={`${prefix}-todo-in-${i}`} className="line-input" style={{ fontSize: 12 }} placeholder="Add task..." />
+              <CheckBox id={`wv-todo-cb-${i}`} style={{ width: 14, height: 14 }} />
+              <input id={`wv-todo-in-${i}`} className="line-input" style={{ fontSize: 12 }} placeholder="Add task..." />
             </div>
           ))}
               {[1, 2].map(i => (

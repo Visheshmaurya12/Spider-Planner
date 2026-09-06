@@ -22,7 +22,9 @@ const NAV: { id: Page; label: string }[] = [
 ];
 
 export default function App() {
+// Run when page changes to catch newly mounted inputs
 
+  const [page, setPage] = useState<Page>("cover");
   useEffect(() => {
     function handleInput(e: Event) {
       const target = e.target as HTMLElement;
@@ -34,8 +36,6 @@ export default function App() {
         }
       }
     }
-    
-    // Restore all inputs on mount
     document.querySelectorAll('input[id], textarea[id]').forEach(el => {
       const saved = localStorage.getItem(el.id);
       if (saved !== null) {
@@ -46,12 +46,10 @@ export default function App() {
         }
       }
     });
-
     document.addEventListener('input', handleInput);
     return () => document.removeEventListener('input', handleInput);
-  }, [page]); // Run when page changes to catch newly mounted inputs
+  }, [page]);
 
-  const [page, setPage] = useState<Page>("cover");
 
   function go(p: Page) { setPage(p); }
 
